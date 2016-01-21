@@ -12,6 +12,7 @@ import java.net.Socket;
  */
 public class SocketHandler {
     private OutputStream outputStream;
+    private Socket socketFromHandler;
 
     public SocketHandler(Socket socket) {
         try {
@@ -19,6 +20,7 @@ public class SocketHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        this.socketFromHandler = socket;
     }
 
     public void sendPacket(Packet packet){
@@ -28,5 +30,17 @@ public class SocketHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getSocketPort() {
+        return socketFromHandler.getPort();
+    }
+
+    public String getSocketAddress() {
+        return socketFromHandler.getInetAddress().getHostAddress();
+    }
+
+    public Socket getSocketFromHandler() {
+        return socketFromHandler;
     }
 }
