@@ -27,6 +27,10 @@ public class Packet {
         }
     }
 
+    public DataOutputStream getData() {
+        return packetData;
+    }
+
     public ByteArrayOutputStream getPacketData() {
         return stream;
     }
