@@ -10,7 +10,8 @@ public class Packet {
     private ByteArrayOutputStream stream = new ByteArrayOutputStream();
     private DataOutputStream packetData = new DataOutputStream(stream);
 
-    public void writeVarInt(DataOutputStream out, int paramInt) {
+    public void writeVarInt(int paramInt) {
+        DataOutputStream out = packetData;
         try {
             while (true) {
                 if ((paramInt & 0xFFFFFF80) == 0) {
