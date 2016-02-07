@@ -1,6 +1,7 @@
 package net.torchpowered.network.message;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 
 /**
  * Represents a message codec for decoding/encoding messages.
@@ -28,5 +29,5 @@ public interface Codec<A extends Message> {
      * @param message the message to encode
      * @return the bytes of the encoded message
      */
-    DataInputStream encode(DataInputStream stream, A message);
+    DataOutputStream encode(DataOutputStream stream, A message);
 }
