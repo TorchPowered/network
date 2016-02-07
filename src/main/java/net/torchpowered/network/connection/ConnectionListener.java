@@ -10,7 +10,7 @@ import java.net.Socket;
  * @author PizzaCrust
  */
 public interface ConnectionListener {
-    void onConnect(Socket socket, DataInputStream connection);
+    void onConnect(Socket socket, DataInputStream connection) throws Exception;
 
     void onCaughtException(Exception exception);
 }

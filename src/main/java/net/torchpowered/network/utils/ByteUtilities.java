@@ -41,7 +41,7 @@ public class ByteUtilities {
      * @param out the DataOutputStream to write the bytes to
      * @param paramInt the VarInt that will be written to the DataOutputStream
      */
-    public void writeVarInt(DataOutputStream out, int paramInt) {
+    public static void writeVarInt(DataOutputStream out, int paramInt) {
         try {
             while (true) {
                 if ((paramInt & 0xFFFFFF80) == 0) {
@@ -63,7 +63,7 @@ public class ByteUtilities {
      * @param in the DataInputStream to read the bytes from.
      * @return the UTF-8 String from the DataInputStream
      */
-    public String readUTF8(DataInputStream in) {
+    public static String readUTF8(DataInputStream in) {
         try {
             int len = readVarInt(in);
             byte[] bytes = new byte[len];
@@ -81,7 +81,7 @@ public class ByteUtilities {
      * @param out the DataOutputStream to write the bytes to
      * @param string the String that will be written to the DataOutputStream
      */
-    public void writeUTF8(DataOutputStream out, String string) {
+    public static void writeUTF8(DataOutputStream out, String string) {
         try {
             byte[] bytes = string.getBytes(StandardCharsets.UTF_8);
             if (bytes.length >= Short.MAX_VALUE) {

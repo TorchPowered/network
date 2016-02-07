@@ -21,7 +21,7 @@ public class ConnectionManager implements Runnable {
         try {
             Socket connectionSocket = server.accept();
             this.listener.onConnect(connectionSocket, new DataInputStream(connectionSocket.getInputStream()));
-        } catch (IOException e) {
+        } catch (Exception e) {
             this.listener.onCaughtException(e);
         }
     }

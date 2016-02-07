@@ -16,8 +16,21 @@ public class MyServer {
         try {
             Server server = new Server(InetAddress.getLocalHost().getHostAddress(), 25565);
             server.setConnectionListener(new ConnectionListener() {
-                public void onConnect(Socket handler, DataInputStream connection) {
-                    System.out.println("Yay, packet recieved with packet size of " + ByteUtilities.readVarInt(connection) + " and id of " + ByteUtilities.readVarInt(connection));
+                public void onConnect(Socket handler, DataInputStream connection) throws Exception {
+                    //header
+                    int packetSize = ByteUtilities.readVarInt(connection);
+                    int packetId = ByteUtilities.readVarInt(connection);
+                    System.out.println("Client has connected with packet size of " + packetSize + " and a ID of " + packetId);
+
+                    //packet identification
+                    if(packetId == 0x00) {
+                        int protocolVersion = ByteUtilities.readVarInt(connection);
+                        String address = ByteUtilities.readUTF8(connection);
+                        int port = connection.readUnsignedShort();
+                        int nextState = ByteUtilities.readVarInt(connection);
+                        System.out.println("Recieved client connection that sent a handshake with protocol version " + protocolVersion);
+                        System.out.println("Address: " + address + ", port: " + port + ", next state: " + nextState);
+                    }
                 }
 
                 public void onCaughtException(Exception exception) {
