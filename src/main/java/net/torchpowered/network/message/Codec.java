@@ -20,7 +20,7 @@ public interface Codec<A extends Message> {
      * @param stream the data of the message
      * @return the message
      */
-    A decode(DataInputStream stream);
+    A decode(DataInputStream stream) throws Exception;
 
     /**
      * Encodes a {@link Message} to bytes to the {@link DataInputStream}.
@@ -29,5 +29,5 @@ public interface Codec<A extends Message> {
      * @param message the message to encode
      * @return the bytes of the encoded message
      */
-    DataOutputStream encode(DataOutputStream stream, A message);
+    DataOutputStream encode(DataOutputStream stream, A message) throws Exception;
 }
